@@ -6,15 +6,15 @@ public aspect CounterAspect {
 
 	private ObjectRegistry objectRegistry = ObjectRegistry.INSTANCE;
 
-	after(final Object obj) returning: initialization (*.new(..)) 
-										&& !within(CounterAspect) 
-										&& !within(*IT)
-										&& !within(ObjectRegistry)
-										&& this(obj){
-		String objType = obj.getClass().getName();
+	// capture all calls to object instantiation, excluding this aspect and the enum where
+	// we're storing the object counts.
+	after() returning: call(*.new(..)) && !within(CounterAspect) && !within(ObjectRegistry) {
+
+		String objType = thisJoinPointStaticPart.getSignature().toString().replaceAll("\\(\\)", "");
 		Integer count = objectRegistry.putIfAbsent(objType, Integer.valueOf(1));
-		if (count != null)
+		if (count != null) {
 			objectRegistry.put(objType, ++count);
+		}
 	}
 
 }

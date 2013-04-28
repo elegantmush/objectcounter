@@ -13,7 +13,7 @@ public enum ObjectRegistry {
 
 	private static final int REPORT_DELAY_SECS = 2;
 
-	ConcurrentMap<String, Integer> registry = new ConcurrentHashMap<String, Integer>();
+	private ConcurrentMap<String, Integer> registry = new ConcurrentHashMap<String, Integer>();
 
 	private final ScheduledExecutorService scheduler = Executors
 			.newScheduledThreadPool(1);
