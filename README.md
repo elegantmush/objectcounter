@@ -24,13 +24,13 @@ To see it in action:
 
 ## What's going on?
     
-The code to count created objects comprises an aspect 
-( `com.elegantmush.objectcounter.aspect.CounterAspect` ) and a singleton enum
-( `com.elegantmush.objectcounter.ObjectRegistry` ). The aspect captures all _initial_ calls to a 
+The code to count created objects comprises an aspect, 
+`com.elegantmush.objectcounter.aspect.CounterAspect` and a singleton enum, 
+`com.elegantmush.objectcounter.ObjectRegistry`. The aspect captures all _initial_ calls to a 
 constructor - i.e. it ignores implicit calls to super() and constructors called via this() chaining. 
-The enum uses a ConcurrentMap to store fully qualified class names and associated counts.
+The enum uses a `java.util.concurrent.ConcurrentMap<String, Integer>` to store fully qualified 
+classnames and associated counts.
 
----
 
 ## What's next?
 
@@ -38,7 +38,6 @@ The enum uses a ConcurrentMap to store fully qualified class names and associate
 * Spring librari-fication, so that it can be dropped into an existing project seamlessly and without
   effort on the project owner's part.
 
----
   
 ## Why?
 
@@ -49,7 +48,4 @@ potentially far-reaching benefits.
 
 We can gain an understanding of these principles and generalise how to practically effect them 
 by using dummy example functionality such as object counting.
-
-
-
 
