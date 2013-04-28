@@ -1,6 +1,5 @@
 # Object Counter
 
----
 
 ## Overview
 
@@ -20,7 +19,6 @@ To see it in action:
 
         mvn -Dit.test=ObjectCounterIT clean verify
     
----
 
 ## What's going on?
     
